@@ -14,6 +14,8 @@ const allRoutes = [
   "/services/hair-cut-beard-styling",
   "/services/balayage-colour",
   "/services/manicure-pedicure",
+  "/services/hair-patch-service",
+  "/services/wig-studio",
   "/services/hair-patch-wig-service",
   "/services/keratin-botox-nano-plastia-treatment",
   "/services/waxing",
@@ -174,7 +176,7 @@ async function inspect(route, viewport) {
     const filteredErrors = errors.filter((message) => !/favicon|Failed to load resource.*fonts/i.test(message));
     const homePass = route !== "/" || (
       result.heroSlides === 3
-      && result.serviceCards === 7
+      && result.serviceCards === 8
       && result.reviewCards === 5
       && result.processTabs === 3
       && !result.tabsOverlap
@@ -188,7 +190,7 @@ async function inspect(route, viewport) {
       && result.app
       && result.footer
       && result.footerHeight > 700
-      && result.credit === "Website designed & built by Odessis.in"
+      && result.credit === "Designed & built by ODESSIS ↗"
       && result.creditHref === "https://odessis.in/"
       && result.mapCorrect
       && !result.overflow

@@ -11,16 +11,36 @@ const A = (name) => route(`/assets/${name}`);
 const services = [
   {
     no: "01",
+    slug: "hair-patch-service",
+    title: "Hair Patch Service",
+    category: "Hair Patch Studio",
+    price: "₹4000–₹6500",
+    image: "hair-patch-fitting-shaad.png",
+    steps: ["Consultation", "Custom Fit", "Final Finish"],
+    copy: "Natural-looking hair patch fitting, colour matching and styling tailored to your hairline, face shape and everyday routine."
+  },
+  {
+    no: "02",
+    slug: "wig-studio",
+    title: "Wig Studio",
+    category: "Wig Studio",
+    price: "₹4000–₹6500",
+    image: "5FTKy8z4K1VG93yZzsfgFbkhrgw.png",
+    steps: ["Consultation", "Custom Selection", "Fit & Style"],
+    copy: "Custom wig selection, fitting and styling with natural movement, comfortable wear and a finish made for you."
+  },
+  {
+    no: "03",
     slug: "hair-cut-beard-styling",
     title: "Hair Cut | Beard | Styling",
     category: "Cut & Style",
     price: "₹550–₹1000",
     image: "9c6L7bzLLH7VMJgioYUS9E3pVo.png",
     steps: ["Consultation", "Cut & Style", "Final Touch"],
-    copy: "Precision haircuts, beard shaping and styling designed around your face shape, hair type and everyday routine."
+    copy: "Precision haircuts, beard shaping and personalised styling designed around your face shape, hair type and everyday routine."
   },
   {
-    no: "02",
+    no: "04",
     slug: "balayage-colour",
     title: "Balayage & Colour",
     category: "Colour Service",
@@ -30,7 +50,7 @@ const services = [
     copy: "Hand-painted colour blended to your skin tone for a natural, dimensional, sun-kissed finish."
   },
   {
-    no: "03",
+    no: "05",
     slug: "manicure-pedicure",
     title: "Manicure | Pedicure",
     category: "Nail & Foot Care",
@@ -40,17 +60,7 @@ const services = [
     copy: "Professional manicure and pedicure care for healthy nails, soft skin and beautifully groomed hands and feet."
   },
   {
-    no: "04",
-    slug: "hair-patch-wig-service",
-    title: "Hair Patch | Wig Service",
-    category: "Length & Volume",
-    price: "₹4000–₹6500",
-    image: "5FTKy8z4K1VG93yZzsfgFbkhrgw.png",
-    steps: ["Consultation", "Custom Fit", "Final Touch"],
-    copy: "Natural-looking hair patches and wigs customised to your face shape, hair colour and personal style."
-  },
-  {
-    no: "05",
+    no: "06",
     slug: "keratin-botox-nano-plastia-treatment",
     title: "Hair Treatment",
     category: "Smoothing Treatment",
@@ -60,7 +70,7 @@ const services = [
     copy: "Keratin, botox and nanoplastia treatments that repair damage, reduce frizz and restore healthy shine."
   },
   {
-    no: "06",
+    no: "07",
     slug: "waxing",
     title: "Waxing",
     category: "Skin & Body Care",
@@ -70,7 +80,7 @@ const services = [
     copy: "Gentle, hygienic face and body waxing performed with premium wax and calming post-care."
   },
   {
-    no: "07",
+    no: "08",
     slug: "bridal-makeup-services",
     title: "Bridal | Makeup Services",
     category: "Special Occasion",
@@ -82,11 +92,12 @@ const services = [
 ];
 
 const categoryImages = [
+  ["Hair Patch", "hair-patch-fitting-shaad.png"],
+  ["Wig Studio", "5FTKy8z4K1VG93yZzsfgFbkhrgw.png"],
   ["Balayage & Colour", "81ZKndk2HddfOlpVEwnxRwrc.png"],
-  ["Beauty Services", "OvAIZ6VLtdhXs5BiZtDjogliq4.png"],
   ["Hair Treatment", "Ixc0t5m0qcEUpWpV6WKOiOaVh2s.png"],
   ["Styling", "9c6L7bzLLH7VMJgioYUS9E3pVo.png"],
-  ["Hair Patch", "86AWeKX12pGk4f57u5nlXiXGYQ.png"],
+  ["Beauty Services", "OvAIZ6VLtdhXs5BiZtDjogliq4.png"],
   ["Waxing & Threading", "M5whEahwJcZcPBdYajxmd1EDWug.png"]
 ];
 
@@ -124,7 +135,7 @@ function siteFooter() {
     <div class="footer-directory shell">
       <div class="footer-brand">
         <a class="footer-wordmark" href="${route("/")}"><span>S</span><strong>SHAAD<small>UNISEX SALON</small></strong></a>
-        <p>Hair, beauty, wig, patch and bridal artistry in the heart of BTM Layout.</p>
+        <p>Hair patch fitting, wig studio services and considered beauty artistry in the heart of BTM Layout.</p>
       </div>
       <div class="footer-column"><p class="footer-label">Visit</p><address>5th C Cross, No. 10<br>16th Main Road, BTM 2nd Stage<br>Bengaluru, Karnataka 560076</address><a class="text-link" href="${MAP_URL}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></div>
       <div class="footer-column"><p class="footer-label">Hours</p><p>Monday–Sunday<br><strong>10:00 AM–10:00 PM</strong></p><span class="open-note"><i></i> Open all seven days</span></div>
@@ -162,18 +173,18 @@ function homePage() {
         <figure class="hero-slide hero-slide--three"><img src="${A("OvAIZ6VLtdhXs5BiZtDjogliq4.png")}" alt=""></figure>
       </div>
       <div class="home-hero__shade"></div>
-      <div class="home-hero__copy"><p class="hero-label"><b>#01</b> BTM LAYOUT · BENGALURU</p><h1>SHAAD</h1><h2>UNISEX SALON</h2><p class="hero-sub">HAIR · BEAUTY · PATCH · WIG · BRIDAL</p><p class="hero-intro">Considered cuts, colour and transformations—made for the person in our chair.</p><div class="button-row">${button("Explore services", "#services", "light")}${button("Book now", BOOKING_URL, "glass")}</div></div>
+      <div class="home-hero__copy"><p class="hero-label"><b>#01</b> BTM LAYOUT · BENGALURU</p><h1>SHAAD</h1><h2>UNISEX SALON</h2><p class="hero-sub">HAIR PATCH | WIG STUDIO</p><p class="hero-intro">Specialists in natural-looking hair patch fitting, wig styling and complete hair care.</p><div class="button-row">${button("Explore services", "#services", "light")}${button("Book now", BOOKING_URL, "glass")}</div></div>
       <div class="hero-progress" aria-hidden="true"><span></span><span></span><span></span></div>
       <a class="hero-location" href="${MAP_URL}" target="_blank" rel="noopener noreferrer">BTM 2nd Stage <span>↗</span></a>
     </section>
     <section class="intro shell">
       <div class="rating">★★★★★<small>4.9/5 (986+ Reviews)</small></div>
-      <h2>YOUR DESTINATION FOR PREMIUM HAIR<br>TRANSFORMATIONS</h2>
+      <h2>YOUR HAIR PATCH &amp; WIG<br>STUDIO IN BENGALURU</h2>
       ${button("Book Appointment", BOOKING_URL)}
       <div class="category-grid">${categoryImages.map(([name,img]) => `<a href="${route("/services")}" style="--bg:url('${A(img)}')"><span>${name}</span></a>`).join("")}</div>
     </section>
     <section class="services-home shell" id="services">
-      <div class="section-heading">${eyebrow("WHAT WE OFFER")}<h2>SERVICES</h2><p>Seven signature services, each carefully crafted to give you results that genuinely last, impress and keep you coming back.</p>${button("Book now", BOOKING_URL)}</div>
+      <div class="section-heading">${eyebrow("WHAT WE OFFER")}<h2>HAIR PATCH, WIG<br>&amp; BEAUTY SERVICES</h2><p>Specialist hair patch and wig solutions, followed by the cuts, colour, treatments and beauty services Shaad is known for.</p>${button("Book now", BOOKING_URL)}</div>
       <div class="service-list">${services.map(s => serviceCard(s, true)).join("")}</div>
       <div class="center-action">${button("View all services", "/services", "light")}</div>
     </section>
@@ -207,7 +218,7 @@ function homePage() {
 }
 
 function servicesPage() {
-  return `${siteHeader()}<main>${pageHero({label:"WHAT WE OFFER",title:"SERVICES",copy:"Every service at Shaad is a personalised experience designed around your hair type, goals and lifestyle."})}<section class="service-page-list shell">${services.map(s => serviceCard(s)).join("")}</section></main>${siteFooter()}`;
+  return `${siteHeader()}<main>${pageHero({label:"WHAT WE OFFER",title:"HAIR PATCH & WIG STUDIO",copy:"Natural-looking hair patch fitting and custom wig services in BTM Layout, alongside the cuts, colour, treatments and beauty care Shaad is known for."})}<section class="service-page-list shell">${services.map(s => serviceCard(s)).join("")}</section></main>${siteFooter()}`;
 }
 
 const team = [
@@ -221,7 +232,7 @@ const team = [
 function aboutPage() {
   return `${siteHeader()}<main>${pageHero({label:"WHO WE ARE",title:"ABOUT US",copy:"Shaad Unisex Salon was built for people who take their hair seriously and expect nothing less than exceptional every time."})}
     <section class="about-portrait"><img src="${A("P2TRmwOb4TK13ZQlNoTOOeDwOfU.png")}" alt="Precision bob cut"></section>
-    <section class="journey shell"><div>${eyebrow("OUR JOURNEY")}<h2>BEAUTY BUILT<br>ON TRUST.</h2></div><p>Our work begins with listening. Every cut, colour, treatment, patch, wig and beauty service is tailored to the person in the chair—not copied from a trend. That focus has made Shaad a dependable salon home in Bengaluru.</p><div class="journey-stats"><span><b>7+</b>Years serving</span><span><b>3000+</b>Happy clients</span><span><b>7</b>Expert services</span><span><b>99%</b>Client satisfaction</span></div></section>
+    <section class="journey shell"><div>${eyebrow("OUR JOURNEY")}<h2>BEAUTY BUILT<br>ON TRUST.</h2></div><p>Our work begins with listening. Every hair patch, wig, cut, colour, treatment and beauty service is tailored to the person in the chair—not copied from a trend. That focus has made Shaad a dependable salon home in Bengaluru.</p><div class="journey-stats"><span><b>7+</b>Years serving</span><span><b>3000+</b>Happy clients</span><span><b>8</b>Expert services</span><span><b>99%</b>Client satisfaction</span></div></section>
     <section class="team shell">${eyebrow("THE STYLISTS")}<div class="section-heading"><h2>OUR TEAM</h2><p>Talent, training and a genuine passion for exceptional results.</p></div><div class="team-grid">${team.map(([role,name,copy,img],i)=>`<article><img src="${A(img)}" alt="${name}" loading="lazy"><span>${String(i+1).padStart(2,"0")} / 05 · ${role}</span><h3>${name}</h3><p>${copy}</p></article>`).join("")}</div></section>
   </main>${siteFooter()}`;
 }
@@ -236,7 +247,8 @@ const detailCopy = {
   "hair-cut-beard-styling": ["What Is Precision Styling?", "Every haircut and beard service begins with face-shape analysis and a conversation about the way you actually style at home."],
   "balayage-colour": ["Balayage & Hair Colour in Bengaluru", "Our colour specialists customise every formula to your complexion, base colour and desired maintenance level."],
   "manicure-pedicure": ["Professional Hand & Foot Care", "A hygienic, restorative ritual covering nail shaping, cuticle care, exfoliation, massage and optional polish."],
-  "hair-patch-wig-service": ["Natural Hair Patch & Wig Solutions", "Every hair system is colour-matched, shaped and fitted for comfort, confidence and a natural finish."],
+  "hair-patch-service": ["Natural Hair Patch Fitting", "Every patch is colour-matched, shaped and fitted for comfort, confidence and a natural finish."],
+  "wig-studio": ["A Wig Studio Built Around You", "Choose a natural-looking wig, then make it yours with careful fitting, shaping and styling."],
   "keratin-botox-nano-plastia-treatment": ["Advanced Hair Repair", "Keratin, hair botox and nanoplastia are selected after a full hair analysis to smooth, strengthen and restore shine."],
   "waxing": ["Gentle, Hygienic Waxing", "Premium wax, careful preparation and calming aftercare deliver smooth skin with minimal irritation."],
   "bridal-makeup-services": ["Bridal Makeup in Bengaluru", "HD and airbrush makeup, bridal hairstyling and draping are composed around your features, outfit and celebration." ]
@@ -265,7 +277,11 @@ if (path === "/") html = homePage();
 else if (path === "/services") html = servicesPage();
 else if (path === "/about") html = aboutPage();
 else if (path === "/contact") html = contactPage();
-else if (path.startsWith("/services/")) html = serviceDetailPage(services.find(s => `/services/${s.slug}` === path) || services[0]);
+else if (path.startsWith("/services/")) {
+  const requestedSlug = path.slice("/services/".length);
+  const legacySlug = requestedSlug === "hair-patch-wig-service" ? "hair-patch-service" : requestedSlug;
+  html = serviceDetailPage(services.find(s => s.slug === legacySlug) || services[0]);
+}
 else html = notFoundPage();
 
 document.querySelector("#app").innerHTML = html;
@@ -314,14 +330,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click
 }));
 
 const routeTitles = {
-  "/": "Shaad Unisex Salon | Hair & Beauty Salon in BTM Layout",
+  "/": "Shaad Unisex Salon | Hair Patch & Wig Studio in Bengaluru",
   "/about": "About Shaad | Unisex Salon in BTM Layout, Bengaluru",
-  "/services": "Salon Services in BTM Layout | Shaad Unisex Salon",
+  "/services": "Hair Patch & Wig Studio Services | Shaad Bengaluru",
   "/contact": "Contact Shaad Unisex Salon | BTM Layout, Bengaluru",
   "/services/hair-cut-beard-styling": "Haircut & Beard Styling in BTM | Shaad Unisex Salon",
   "/services/balayage-colour": "Balayage & Hair Colour in BTM | Shaad Unisex Salon",
   "/services/manicure-pedicure": "Manicure & Pedicure in BTM | Shaad Unisex Salon",
-  "/services/hair-patch-wig-service": "Hair Patch & Wig Service in Bengaluru | Shaad Salon",
+  "/services/hair-patch-service": "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
+  "/services/wig-studio": "Wig Studio in Bengaluru | Shaad Unisex Salon",
+  "/services/hair-patch-wig-service": "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
   "/services/keratin-botox-nano-plastia-treatment": "Keratin, Botox & Nanoplastia in BTM | Shaad Salon",
   "/services/waxing": "Waxing Services in BTM Layout | Shaad Unisex Salon",
   "/services/bridal-makeup-services": "Bridal Makeup in BTM Layout | Shaad Unisex Salon",

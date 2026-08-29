@@ -11,16 +11,16 @@ const ogImage = `${origin}${basePath}/og/shaad-unisex-salon.jpg`;
 
 const pages = {
   "": {
-    title: "Shaad Unisex Salon | Hair & Beauty Salon in BTM Layout",
-    description: "Book expert haircuts, colour, keratin, hair patch, wigs, bridal makeup, waxing and nail care at Shaad Unisex Salon in BTM Layout, Bengaluru.",
+    title: "Shaad Unisex Salon | Hair Patch & Wig Studio in Bengaluru",
+    description: "Hair patch fitting and wig studio services in BTM Layout, Bengaluru, alongside expert haircuts, colour, treatments, bridal and beauty care at Shaad Unisex Salon.",
   },
   about: {
     title: "About Shaad | Unisex Salon in BTM Layout, Bengaluru",
-    description: "Meet Shaad Unisex Salon in BTM Layout, Bengaluru: a trusted team delivering personalised hair, beauty, wig, patch and bridal services every day.",
+    description: "Meet Shaad Unisex Salon in BTM Layout, Bengaluru: a focused hair patch and wig studio alongside personalised hair, beauty and bridal services.",
   },
   services: {
-    title: "Salon Services in BTM Layout | Shaad Unisex Salon",
-    description: "Explore haircuts, balayage, keratin, nanoplastia, hair patch, wigs, bridal makeup, waxing, manicure and pedicure services at Shaad in BTM Layout.",
+    title: "Hair Patch & Wig Studio Services | Shaad Bengaluru",
+    description: "Explore hair patch fitting and wig studio services in BTM Layout, followed by haircuts, colour, treatments, bridal makeup and beauty care at Shaad.",
   },
   contact: {
     title: "Contact Shaad Unisex Salon | BTM Layout, Bengaluru",
@@ -41,10 +41,20 @@ const pages = {
     description: "Book hygienic manicure and pedicure care with nail shaping, cuticle care, exfoliation and massage at Shaad Unisex Salon in BTM Layout.",
     service: "Manicure and Pedicure",
   },
+  "services/hair-patch-service": {
+    title: "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
+    description: "Get natural-looking hair patch fitting, colour matching and styling at Shaad Unisex Salon in BTM Layout, Bengaluru.",
+    service: "Hair Patch Service",
+  },
+  "services/wig-studio": {
+    title: "Wig Studio in Bengaluru | Shaad Unisex Salon",
+    description: "Find a custom wig studio in BTM Layout, Bengaluru for natural-looking wig selection, fitting and styling at Shaad.",
+    service: "Wig Studio",
+  },
   "services/hair-patch-wig-service": {
-    title: "Hair Patch & Wig Service in Bengaluru | Shaad Salon",
-    description: "Discover natural-looking hair patch and wig solutions, colour-matched and custom-fitted for comfort and confidence at Shaad Unisex Salon, Bengaluru.",
-    service: "Hair Patch and Wig Service",
+    title: "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
+    description: "Get natural-looking hair patch fitting, colour matching and styling at Shaad Unisex Salon in BTM Layout, Bengaluru.",
+    service: "Hair Patch Service",
   },
   "services/keratin-botox-nano-plastia-treatment": {
     title: "Keratin, Botox & Nanoplastia in BTM | Shaad Salon",
