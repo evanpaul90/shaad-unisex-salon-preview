@@ -15,7 +15,7 @@ const services = [
     title: "Hair Patch Service",
     category: "Hair Patch Studio",
     price: "₹4000–₹6500",
-    image: "hair-patch-fitting-shaad.png",
+    image: "hair-patch-fitting-shaad-v2.png",
     steps: ["Consultation", "Custom Fit", "Final Finish"],
     copy: "Natural-looking hair patch fitting, colour matching and styling tailored to your hairline, face shape and everyday routine."
   },
@@ -25,7 +25,7 @@ const services = [
     title: "Wig Studio",
     category: "Wig Studio",
     price: "₹4000–₹6500",
-    image: "5FTKy8z4K1VG93yZzsfgFbkhrgw.png",
+    image: "u8DhJUVVof2cDZ7Fwv8ApyeKM.png",
     steps: ["Consultation", "Custom Selection", "Fit & Style"],
     copy: "Custom wig selection, fitting and styling with natural movement, comfortable wear and a finish made for you."
   },
@@ -35,7 +35,7 @@ const services = [
     title: "Hair Cut | Beard | Styling",
     category: "Cut & Style",
     price: "₹550–₹1000",
-    image: "9c6L7bzLLH7VMJgioYUS9E3pVo.png",
+    image: "haircut-by-shaad-v2.png",
     steps: ["Consultation", "Cut & Style", "Final Touch"],
     copy: "Precision haircuts, beard shaping and personalised styling designed around your face shape, hair type and everyday routine."
   },
@@ -92,11 +92,11 @@ const services = [
 ];
 
 const categoryImages = [
-  ["Hair Patch", "hair-patch-fitting-shaad.png"],
-  ["Wig Studio", "5FTKy8z4K1VG93yZzsfgFbkhrgw.png"],
+  ["Hair Patch", "hair-patch-fitting-shaad-v2.png"],
+  ["Wig Studio", "u8DhJUVVof2cDZ7Fwv8ApyeKM.png"],
   ["Balayage & Colour", "81ZKndk2HddfOlpVEwnxRwrc.png"],
   ["Hair Treatment", "Ixc0t5m0qcEUpWpV6WKOiOaVh2s.png"],
-  ["Styling", "9c6L7bzLLH7VMJgioYUS9E3pVo.png"],
+  ["Styling", "haircut-by-shaad-v2.png"],
   ["Beauty Services", "OvAIZ6VLtdhXs5BiZtDjogliq4.png"],
   ["Waxing & Threading", "M5whEahwJcZcPBdYajxmd1EDWug.png"]
 ];
@@ -179,23 +179,24 @@ function homePage() {
     </section>
     <section class="intro shell">
       <div class="rating">★★★★★<small>4.9/5 (986+ Reviews)</small></div>
-      <h2>YOUR HAIR PATCH &amp; WIG<br>STUDIO IN BENGALURU</h2>
+      <h2>PRECISION YOU CAN SEE.<br> CARE YOU CAN FEEL.</h2>
       ${button("Book Appointment", BOOKING_URL)}
-      <div class="category-grid">${categoryImages.map(([name,img]) => `<a href="${route("/services")}" style="--bg:url('${A(img)}')"><span>${name}</span></a>`).join("")}</div>
+      <div class="category-grid" data-category-rail>${categoryImages.map(([name,img], index) => `<a class="${index === 0 ? "is-active" : ""}" data-category-card href="${route("/services")}" style="--bg:url('${A(img)}')"><span>${name}</span></a>`).join("")}</div>
     </section>
     <section class="services-home shell" id="services">
-      <div class="section-heading">${eyebrow("WHAT WE OFFER")}<h2>HAIR PATCH, WIG<br>&amp; BEAUTY SERVICES</h2><p>Specialist hair patch and wig solutions, followed by the cuts, colour, treatments and beauty services Shaad is known for.</p>${button("Book now", BOOKING_URL)}</div>
+      <div class="services-home__lead"><div>${eyebrow("SERVICES AT SHAAD")}<h2>Specialist first.<br>Complete care.</h2></div><p>Start with the service you came for, then explore the rest of Shaad’s salon craft.</p>${button("Book now", BOOKING_URL)}</div>
       <div class="service-list">${services.map(s => serviceCard(s, true)).join("")}</div>
       <div class="center-action">${button("View all services", "/services", "light")}</div>
     </section>
     <section class="benefits shell">
       <div class="section-heading">${eyebrow("BENEFITS")}<h2>WHY US?</h2><p>Elevate your hair with bespoke styling, premium products and unmatched salon care.</p>${button("Book now", BOOKING_URL)}</div>
       <div class="benefit-grid">
-        <article class="benefit-photo" style="--bg:url('${A("gDJMv9iYSRwNhzhbXFBaNLeJHTA.png")}')"><h3>CRAFTED WITH PASSION</h3><p>Precision, passion and genuine expertise in every appointment.</p></article>
-        <article><h3>PURE PRODUCTS</h3><p>Professional-grade brands trusted by top stylists worldwide.</p><div class="step-chips"><span>Hydrating</span><span>Salon grade</span><span>Nourishing</span></div></article>
-        <article class="stat"><strong>496+</strong><p>Signature styles completed by our expert team each month.</p></article>
-        <article><h3>CARE CONTINUES</h3><p>Your hair journey continues at home with our expert recommendations.</p><div class="step-chips"><span>Maintain</span><span>Nourish</span><span>Elevate</span></div></article>
-        <article class="stat"><strong>99%</strong><p>Client satisfaction across every service we offer.</p></article>
+        <article class="benefit-photo" style="--bg:url('${A("gDJMv9iYSRwNhzhbXFBaNLeJHTA.png")}')"><span class="benefit-kicker">The Shaad standard</span><h3>CRAFTED WITH PASSION</h3><p>Precision, patience and genuine expertise in every appointment.</p></article>
+        <article class="benefit-product"><div><span class="benefit-kicker">What touches your hair matters</span><h3>PURE PRODUCTS</h3><p>Professional-grade formulas chosen for performance, finish and hair health.</p><div class="step-chips"><span>Hydrating</span><span>Salon grade</span><span>Nourishing</span></div></div><img src="${A("KpBJycQ9fSvHUKpGVFzBcMyfcnI.png")}" alt="Professional hair care products used at Shaad" loading="lazy"></article>
+        <article class="stat benefit-proof"><div class="proof-stack" aria-hidden="true"><img src="${A("N1i6uemufQo1zAbIu5aTL3029HA.png")}" alt=""><img src="${A("ZY6VgawMfIG8qkGmrrc1iz3aIS0.png")}" alt=""><img src="${A("u8DhJUVVof2cDZ7Fwv8ApyeKM.png")}" alt=""></div><strong>550+</strong><p>Signature looks completed by our team each month.</p></article>
+        <article class="benefit-finish"><img src="${A("Uyo8sm84HOtQRSTmyrEzbB0mIM.png")}" alt="Polished hair finish at Shaad" loading="lazy"><span>THE FINISH IS<br>THE DIFFERENCE</span></article>
+        <article class="benefit-care"><div><span class="benefit-kicker">Beyond the chair</span><h3>CARE CONTINUES</h3><p>Your hair journey continues at home with clear recommendations from your stylist.</p><div class="step-chips"><span>Maintain</span><span>Nourish</span><span>Elevate</span></div></div><img src="${A("7E2QVcFqNFwp6HX08zYvWZgkyuE.png")}" alt="Professional styling product recommended at Shaad" loading="lazy"></article>
+        <article class="stat benefit-satisfaction"><span class="benefit-kicker">Client confidence</span><strong>99%</strong><p>Clients leave satisfied with the care they receive.</p></article>
       </div>
     </section>
     <section class="salon-film reveal"><video autoplay muted loop playsinline preload="metadata" poster="${A("8IPKU3CSOTLRqXlFCbzN4z4ceDU.png")}"><source src="${A("salon-film.mp4")}" type="video/mp4"></video><div class="film-caption"><span>INSIDE SHAAD</span><p>Real craft. Real clients. Every day.</p></div></section>
@@ -315,6 +316,32 @@ document.querySelectorAll(".process-tab").forEach((tab, index) => tab.addEventLi
   const count = document.querySelector("[data-process-count]");
   if (count) count.textContent = `0${index + 1} / 03`;
 }));
+
+const categoryRail = document.querySelector("[data-category-rail]");
+const categoryCards = [...document.querySelectorAll("[data-category-card]")];
+if (categoryRail && categoryCards.length) {
+  let activeCategory = 0;
+  let categoryTimer;
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const desktopRail = matchMedia("(min-width: 901px)");
+  const activateCategory = (index) => {
+    activeCategory = index;
+    categoryCards.forEach((card, cardIndex) => card.classList.toggle("is-active", cardIndex === index));
+  };
+  const stopCategoryRail = () => clearInterval(categoryTimer);
+  const startCategoryRail = () => {
+    stopCategoryRail();
+    if (reduceMotion.matches || !desktopRail.matches) return;
+    categoryTimer = setInterval(() => activateCategory((activeCategory + 1) % categoryCards.length), 3400);
+  };
+  categoryCards.forEach((card, index) => {
+    card.addEventListener("pointerenter", () => { stopCategoryRail(); activateCategory(index); });
+    card.addEventListener("focus", () => { stopCategoryRail(); activateCategory(index); });
+  });
+  categoryRail.addEventListener("pointerleave", startCategoryRail);
+  categoryRail.addEventListener("focusout", event => !categoryRail.contains(event.relatedTarget) && startCategoryRail());
+  startCategoryRail();
+}
 
 const revealObserver = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
   entries.forEach(entry => entry.isIntersecting && entry.target.classList.add("is-visible"));
