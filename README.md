@@ -33,6 +33,21 @@ Pushes to `main` deploy the owned build to:
 The Pages build uses a repository-aware base path and includes a `404.html` SPA fallback, so direct
 links to service, about, and contact routes continue to work.
 
+## Share and SEO package
+
+- Branded 1200×630 Open Graph/Twitter card at `public/og/shaad-unisex-salon.jpg`
+- SVG, ICO, 16px, 32px, Apple Touch, Android, maskable, and Microsoft tile icons
+- Unique title, description, canonical, Open Graph, Twitter, breadcrumb, and service metadata per route
+- BeautySalon/HairSalon/LocalBusiness, WebSite, Service, and BreadcrumbList JSON-LD
+- `robots.txt`, XML sitemap, web manifest, browser configuration, and hero-image preload
+
+Regenerate the derived brand assets with `npm run assets:brand`. The AI-created, text-free source
+photograph is retained under `assets-source/`; all typography and favicon rendering are deterministic.
+
+The temporary GitHub Pages build intentionally adds `noindex, follow` to every route so it cannot
+compete with the salon's current domain. Remove that preview guard and replace all preview URLs when
+the final domain is connected.
+
 ## Integrations
 
 - Booking: `https://aicrm.geteasysoftware.com/shaad_unisexsalon/webapp/`

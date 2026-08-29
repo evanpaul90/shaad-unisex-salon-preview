@@ -157,7 +157,7 @@ function homePage() {
   return `${siteHeader()}<main>
     <section class="home-hero">
       <div class="hero-gallery" aria-hidden="true">
-        <figure class="hero-slide hero-slide--one"><img src="${A("agmc4ejViJdDVQUMzNkiJWBw.png")}" alt=""></figure>
+        <figure class="hero-slide hero-slide--one"><img src="${A("agmc4ejViJdDVQUMzNkiJWBw.png")}" alt="" fetchpriority="high"></figure>
         <figure class="hero-slide hero-slide--two"><img src="${A("8IPKU3CSOTLRqXlFCbzN4z4ceDU.png")}" alt=""></figure>
         <figure class="hero-slide hero-slide--three"><img src="${A("OvAIZ6VLtdhXs5BiZtDjogliq4.png")}" alt=""></figure>
       </div>
@@ -313,5 +313,17 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click
   if (target) { e.preventDefault(); target.scrollIntoView({behavior:"smooth"}); }
 }));
 
-const title = path === "/" ? "Shaad Unisex Salon" : `${path.split("/").filter(Boolean).map(x=>x.replaceAll("-"," ")).join(" · ")} | Shaad Unisex Salon`;
-document.title = title.replace(/\b\w/g, c => c.toUpperCase());
+const routeTitles = {
+  "/": "Shaad Unisex Salon | Hair & Beauty Salon in BTM Layout",
+  "/about": "About Shaad | Unisex Salon in BTM Layout, Bengaluru",
+  "/services": "Salon Services in BTM Layout | Shaad Unisex Salon",
+  "/contact": "Contact Shaad Unisex Salon | BTM Layout, Bengaluru",
+  "/services/hair-cut-beard-styling": "Haircut & Beard Styling in BTM | Shaad Unisex Salon",
+  "/services/balayage-colour": "Balayage & Hair Colour in BTM | Shaad Unisex Salon",
+  "/services/manicure-pedicure": "Manicure & Pedicure in BTM | Shaad Unisex Salon",
+  "/services/hair-patch-wig-service": "Hair Patch & Wig Service in Bengaluru | Shaad Salon",
+  "/services/keratin-botox-nano-plastia-treatment": "Keratin, Botox & Nanoplastia in BTM | Shaad Salon",
+  "/services/waxing": "Waxing Services in BTM Layout | Shaad Unisex Salon",
+  "/services/bridal-makeup-services": "Bridal Makeup in BTM Layout | Shaad Unisex Salon",
+};
+document.title = routeTitles[path] || "Page Not Found | Shaad Unisex Salon";

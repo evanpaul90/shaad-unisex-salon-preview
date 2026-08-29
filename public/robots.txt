@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evanpaul90.github.io/shaad-unisex-salon-preview/sitemap.xml

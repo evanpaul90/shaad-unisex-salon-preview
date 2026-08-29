@@ -1,0 +1,16 @@
+{
+  "name": "Shaad Unisex Salon",
+  "short_name": "Shaad Salon",
+  "description": "Premium hair and beauty services in BTM Layout, Bengaluru.",
+  "id": "/shaad-unisex-salon-preview/",
+  "start_url": "/shaad-unisex-salon-preview/",
+  "scope": "/shaad-unisex-salon-preview/",
+  "display": "standalone",
+  "background_color": "#f4ecdf",
+  "theme_color": "#48120e",
+  "icons": [
+    { "src": "/shaad-unisex-salon-preview/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/shaad-unisex-salon-preview/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/shaad-unisex-salon-preview/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

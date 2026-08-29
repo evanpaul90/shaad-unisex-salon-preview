@@ -3,6 +3,9 @@ import { chromium } from "playwright";
 const base = process.env.SHAAD_BASE_URL || "http://127.0.0.1:5181";
 const booking = "https://aicrm.geteasysoftware.com/shaad_unisexsalon/webapp/";
 const mapUrl = "https://share.google/ZmUFkZwmDAVp3thyx";
+const previewRoot = "https://evanpaul90.github.io/shaad-unisex-salon-preview";
+const previewOgImage = `${previewRoot}/og/shaad-unisex-salon.jpg`;
+const expectNoIndex = process.env.SHAAD_EXPECT_NOINDEX === "true";
 const allRoutes = [
   "/",
   "/about",
@@ -35,7 +38,8 @@ async function inspect(route, viewport) {
   page.on("pageerror", (error) => errors.push(error.message));
 
   try {
-    const response = await page.goto(`${base}${route}`, {
+    const requestRoute = expectNoIndex && route !== "/" ? `${route}/` : route;
+    const response = await page.goto(`${base}${requestRoute}`, {
       waitUntil: "domcontentloaded",
       timeout: 30_000,
     });
@@ -43,12 +47,21 @@ async function inspect(route, viewport) {
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(150);
 
-    const result = await page.evaluate(({ booking, mapUrl }) => {
+    const expectedCanonical = `${previewRoot}${route === "/" ? "/" : `${route}/`}`;
+    const result = await page.evaluate(({ booking, mapUrl, expectedCanonical, previewOgImage, expectNoIndex, route }) => {
       const text = document.body.innerText;
       const bookingLinks = [...document.querySelectorAll("a")]
         .filter((anchor) => /^book\b/i.test(anchor.textContent.trim()))
         .map((anchor) => anchor.href);
       const footer = document.querySelector(".site-footer");
+      const meta = (selector) => document.querySelector(selector)?.content || "";
+      const schemas = [...document.querySelectorAll('script[type="application/ld+json"]')]
+        .map((script) => { try { return JSON.parse(script.textContent); } catch { return null; } })
+        .filter(Boolean);
+      const schemaText = JSON.stringify(schemas);
+      const description = meta('meta[name="description"]');
+      const robots = meta('meta[name="robots"]');
+      const ogImage = meta('meta[property="og:image"]');
       const processTabs = [...document.querySelectorAll(".process-tab")];
       const tabsOverlap = processTabs.some((tab, index) => processTabs.slice(index + 1).some((other) => {
         const a = tab.getBoundingClientRect();
@@ -79,8 +92,48 @@ async function inspect(route, viewport) {
         tabsOverlap,
         videoCount: document.querySelectorAll("video").length,
         mapCorrect: document.querySelector(".footer-map")?.href === mapUrl,
+        seo: {
+          titleLength: document.title.length,
+          descriptionLength: description.length,
+          canonical: document.querySelector('link[rel="canonical"]')?.href,
+          robots,
+          ogTitle: meta('meta[property="og:title"]'),
+          ogDescription: meta('meta[property="og:description"]'),
+          ogUrl: meta('meta[property="og:url"]'),
+          ogImage,
+          ogWidth: meta('meta[property="og:image:width"]'),
+          ogHeight: meta('meta[property="og:image:height"]'),
+          twitterCard: meta('meta[name="twitter:card"]'),
+          twitterImage: meta('meta[name="twitter:image"]'),
+          iconCount: document.querySelectorAll('link[rel="icon"]').length,
+          manifest: document.querySelector('link[rel="manifest"]')?.href,
+          hasSalonSchema: schemaText.includes('BeautySalon'),
+          hasWebsiteSchema: schemaText.includes('WebSite'),
+          hasBreadcrumbSchema: route === "/" || schemaText.includes('BreadcrumbList'),
+          hasServiceSchema: !route.startsWith("/services/") || schemaText.includes('"Service"'),
+          pass: document.title.length >= 30
+            && document.title.length <= 65
+            && description.length >= 110
+            && description.length <= 165
+            && document.querySelector('link[rel="canonical"]')?.href === expectedCanonical
+            && meta('meta[property="og:title"]') === document.title
+            && meta('meta[property="og:description"]') === description
+            && meta('meta[property="og:url"]') === expectedCanonical
+            && ogImage === previewOgImage
+            && meta('meta[property="og:image:width"]') === "1200"
+            && meta('meta[property="og:image:height"]') === "630"
+            && meta('meta[name="twitter:card"]') === "summary_large_image"
+            && meta('meta[name="twitter:image"]') === previewOgImage
+            && document.querySelectorAll('link[rel="icon"]').length >= 4
+            && document.querySelector('link[rel="manifest"]')?.href.endsWith('/site.webmanifest')
+            && schemaText.includes('BeautySalon')
+            && schemaText.includes('WebSite')
+            && (route === "/" || schemaText.includes('BreadcrumbList'))
+            && (!route.startsWith("/services/") || schemaText.includes('"Service"'))
+            && (!expectNoIndex || robots.includes("noindex")),
+        },
       };
-    }, { booking, mapUrl });
+    }, { booking, mapUrl, expectedCanonical, previewOgImage, expectNoIndex, route });
 
     if (viewport.name === "mobile") {
       const menu = page.locator(".menu-button");
@@ -131,7 +184,7 @@ async function inspect(route, viewport) {
       && result.processChanges
     );
     const passed = Boolean(response?.ok())
-      && result.title.includes("Shaad Unisex Salon")
+      && result.title.includes("Shaad")
       && result.app
       && result.footer
       && result.footerHeight > 700
@@ -146,6 +199,7 @@ async function inspect(route, viewport) {
       && result.hasHours
       && result.hasPhone
       && filteredErrors.length === 0
+      && result.seo.pass
       && (viewport.name !== "mobile" || result.mobileMenuOpens)
       && homePass;
 
