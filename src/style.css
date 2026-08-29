@@ -301,6 +301,11 @@ body:not(.home-route) .site-header:not(.is-scrolled) { color: var(--ink); }
 .site-footer .footer-bottom a { color: rgba(255,255,255,.7); }
 .site-footer .footer-bottom a:hover { color: #fff; }
 .site-footer .footer-bottom b { color: #fff; }
+.site-footer .footer-bottom .footer-credit { align-items: center; display: inline-flex; gap: 7px; text-transform: none; white-space: nowrap; }
+.site-footer .footer-credit svg { fill: none; height: 18px; stroke: currentColor; stroke-linecap: square; stroke-linejoin: miter; stroke-width: 2.4; width: 18px; }
+.site-footer .footer-credit span { font-size: 10px; letter-spacing: .01em; }
+.site-footer .footer-credit b { color: #fff; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; }
+.site-footer .footer-credit i { color: var(--rose); font-size: 12px; font-style: normal; margin-left: 2px; opacity: .8; }
 
 .reveal, .service-card, .benefit-grid article, .team-grid article { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-visible, .service-card.is-visible, .benefit-grid article.is-visible, .team-grid article.is-visible { opacity: 1; transform: none; }

@@ -133,7 +133,7 @@ function siteFooter() {
     <a class="footer-map shell" href="${MAP_URL}" target="_blank" rel="noopener noreferrer" aria-label="Open Shaad Unisex Salon location in Google Maps">
       <span class="map-pin" aria-hidden="true"><i></i></span><span><b>BTM LAYOUT 2ND STAGE</b><small>Get directions to Shaad</small></span><strong>OPEN DAILY<br>10 AM–10 PM</strong><em>↗</em>
     </a>
-    <div class="footer-bottom shell"><span>© ${new Date().getFullYear()} Shaad Unisex Salon</span><span>BTM Layout · Bengaluru</span><a href="https://odessis.in/" target="_blank" rel="noopener noreferrer">Website designed &amp; built by <b>Odessis.in</b></a></div>
+    <div class="footer-bottom shell"><span>© ${new Date().getFullYear()} Shaad Unisex Salon</span><span>BTM Layout · Bengaluru</span><a class="footer-credit" href="https://odessis.in/" target="_blank" rel="noopener noreferrer" aria-label="Designed and built by Odessis. Visit odessis.in."><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 7C18.19 7 7 18.19 7 32s11.19 25 25 25 25-11.19 25-25c0-10.87-6.94-20.12-16.63-23.56"/><path d="M32 7v15M32 57V31M25 38l7-7 7 7"/></svg><span>Designed &amp; built by <b>ODESSIS</b> <i>↗</i></span></a></div>
   </footer>`;
 }
 
