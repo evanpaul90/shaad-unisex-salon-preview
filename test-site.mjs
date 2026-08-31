@@ -3,8 +3,8 @@ import { chromium } from "playwright";
 const base = process.env.SHAAD_BASE_URL || "http://127.0.0.1:5181";
 const booking = "https://aicrm.geteasysoftware.com/shaad_unisexsalon/webapp/";
 const mapUrl = "https://share.google/ZmUFkZwmDAVp3thyx";
-const previewRoot = "https://evanpaul90.github.io/shaad-unisex-salon-preview";
-const previewOgImage = `${previewRoot}/og/shaad-unisex-salon.jpg`;
+const previewRoot = process.env.SHAAD_EXPECTED_ROOT || "https://evanpaul90.github.io/shaad-unisex-salon-preview";
+const previewOgImage = process.env.SHAAD_EXPECTED_OG || `${previewRoot}/og/shaad-unisex-salon.jpg`;
 const expectNoIndex = process.env.SHAAD_EXPECT_NOINDEX === "true";
 const allRoutes = [
   "/",

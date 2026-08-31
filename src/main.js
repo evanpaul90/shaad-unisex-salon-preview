@@ -371,4 +371,25 @@ const routeTitles = {
   "/services/waxing": "Waxing Services in BTM Layout | Shaad Unisex Salon",
   "/services/bridal-makeup-services": "Bridal Makeup in BTM Layout | Shaad Unisex Salon",
 };
-document.title = routeTitles[path] || "Page Not Found | Shaad Unisex Salon";
+const routeDescriptions = {
+  "/": "Shaad is a specialist hair patch and wig studio in BTM Layout, Bengaluru, offering natural-looking fitting, styling and complete salon care.",
+  "/about": "Meet Shaad Unisex Salon in BTM Layout, Bengaluru: a focused hair patch and wig studio alongside personalised hair, beauty and bridal services.",
+  "/services": "Explore specialist hair patch fitting and wig studio services in BTM Layout, followed by haircuts, colour, treatments and beauty care at Shaad.",
+  "/contact": "Visit Shaad Unisex Salon at 16th Main Road, BTM 2nd Stage, Bengaluru. Open daily 10 AM–10 PM. Call +91 97402 20816 or book online.",
+  "/services/hair-cut-beard-styling": "Book precision haircuts, beard shaping and personalised styling at Shaad Unisex Salon in BTM Layout, Bengaluru.",
+  "/services/balayage-colour": "Get personalised balayage and professional hair colour at Shaad in BTM Layout, Bengaluru, blended for your complexion and lifestyle.",
+  "/services/manicure-pedicure": "Book hygienic manicure and pedicure care in BTM Layout, Bengaluru, with nail shaping, cuticle care, exfoliation and a restorative finish at Shaad.",
+  "/services/hair-patch-service": "Get natural-looking hair patch fitting, colour matching and styling at Shaad Unisex Salon in BTM Layout, Bengaluru.",
+  "/services/wig-studio": "Find a custom wig studio in BTM Layout, Bengaluru for natural-looking wig selection, fitting and styling at Shaad.",
+  "/services/keratin-botox-nano-plastia-treatment": "Book keratin, hair botox and nanoplastia treatments in BTM Layout, Bengaluru, for smoother, stronger and frizz-controlled hair at Shaad.",
+  "/services/waxing": "Book gentle, hygienic face and body waxing in BTM Layout, Bengaluru, with premium wax and calming aftercare at Shaad Unisex Salon.",
+  "/services/bridal-makeup-services": "Book HD and airbrush bridal makeup, hairstyling and draping in Bengaluru, tailored to your features, outfit and celebration at Shaad.",
+};
+const seoTitle = routeTitles[path] || "Page Not Found | Shaad Unisex Salon";
+const seoDescription = routeDescriptions[path] || "Return to Shaad Unisex Salon for specialist hair patch, wig studio and complete salon services in BTM Layout, Bengaluru.";
+document.title = seoTitle;
+document.querySelector('meta[name="description"]')?.setAttribute("content", seoDescription);
+document.querySelector('meta[property="og:title"]')?.setAttribute("content", seoTitle);
+document.querySelector('meta[property="og:description"]')?.setAttribute("content", seoDescription);
+document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", seoTitle);
+document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", seoDescription);

@@ -5,14 +5,15 @@ import { fileURLToPath } from "node:url";
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const distRoot = join(projectRoot, "dist");
 const entryPath = join(distRoot, "index.html");
-const origin = "https://evanpaul90.github.io";
-const basePath = "/shaad-unisex-salon-preview";
-const ogImage = `${origin}${basePath}/og/shaad-unisex-salon.jpg`;
+const isPreview = process.env.GITHUB_PAGES === "true";
+const origin = process.env.SITE_ORIGIN || process.env.URL || (isPreview ? "https://evanpaul90.github.io" : "https://shaad-unisex-salon.netlify.app");
+const basePath = process.env.SITE_BASE_PATH || (isPreview ? "/shaad-unisex-salon-preview" : "");
+const ogImage = `${origin}${basePath}/og/shaad-hair-patch-wig-banner.jpg`;
 
 const pages = {
   "": {
     title: "Shaad Unisex Salon | Hair Patch & Wig Studio in Bengaluru",
-    description: "Hair patch fitting and wig studio services in BTM Layout, Bengaluru, alongside expert haircuts, colour, treatments, bridal and beauty care at Shaad Unisex Salon.",
+    description: "Shaad is a specialist hair patch and wig studio in BTM Layout, Bengaluru, offering natural-looking fitting, styling and complete salon care.",
   },
   about: {
     title: "About Shaad | Unisex Salon in BTM Layout, Bengaluru",
@@ -20,7 +21,7 @@ const pages = {
   },
   services: {
     title: "Hair Patch & Wig Studio Services | Shaad Bengaluru",
-    description: "Explore hair patch fitting and wig studio services in BTM Layout, followed by haircuts, colour, treatments, bridal makeup and beauty care at Shaad.",
+    description: "Explore specialist hair patch fitting and wig studio services in BTM Layout, followed by haircuts, colour, treatments and beauty care at Shaad.",
   },
   contact: {
     title: "Contact Shaad Unisex Salon | BTM Layout, Bengaluru",
@@ -38,7 +39,7 @@ const pages = {
   },
   "services/manicure-pedicure": {
     title: "Manicure & Pedicure in BTM | Shaad Unisex Salon",
-    description: "Book hygienic manicure and pedicure care with nail shaping, cuticle care, exfoliation and massage at Shaad Unisex Salon in BTM Layout.",
+    description: "Book hygienic manicure and pedicure care in BTM Layout, Bengaluru, with nail shaping, cuticle care, exfoliation and a restorative finish at Shaad.",
     service: "Manicure and Pedicure",
   },
   "services/hair-patch-service": {
@@ -58,17 +59,17 @@ const pages = {
   },
   "services/keratin-botox-nano-plastia-treatment": {
     title: "Keratin, Botox & Nanoplastia in BTM | Shaad Salon",
-    description: "Book keratin, hair botox and nanoplastia treatments for smoother, stronger, frizz-controlled hair at Shaad Unisex Salon in BTM Layout, Bengaluru.",
+    description: "Book keratin, hair botox and nanoplastia treatments in BTM Layout, Bengaluru, for smoother, stronger and frizz-controlled hair at Shaad.",
     service: "Keratin, Hair Botox and Nanoplastia Treatment",
   },
   "services/waxing": {
     title: "Waxing Services in BTM Layout | Shaad Unisex Salon",
-    description: "Book gentle, hygienic face and body waxing with premium wax and calming aftercare at Shaad Unisex Salon in BTM Layout, Bengaluru.",
+    description: "Book gentle, hygienic face and body waxing in BTM Layout, Bengaluru, with premium wax and calming aftercare at Shaad Unisex Salon.",
     service: "Waxing",
   },
   "services/bridal-makeup-services": {
     title: "Bridal Makeup in BTM Layout | Shaad Unisex Salon",
-    description: "Book HD and airbrush bridal makeup, hairstyling and draping tailored to your features and celebration at Shaad Unisex Salon in Bengaluru.",
+    description: "Book HD and airbrush bridal makeup, hairstyling and draping in Bengaluru, tailored to your features, outfit and celebration at Shaad.",
     service: "Bridal and Makeup Services",
   },
 };
@@ -119,8 +120,9 @@ function render(entry, route, page) {
   const url = `${origin}${basePath}/${route ? `${route}/` : ""}`;
   let html = entry.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(page.title)}</title>`);
   html = setMeta(html, "name", "description", page.description);
-  html = setMeta(html, "name", "robots", "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
-  html = setMeta(html, "name", "googlebot", "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+  const robots = isPreview ? "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+  html = setMeta(html, "name", "robots", robots);
+  html = setMeta(html, "name", "googlebot", robots);
   html = setMeta(html, "property", "og:title", page.title);
   html = setMeta(html, "property", "og:description", page.description);
   html = setMeta(html, "property", "og:url", url);
@@ -151,3 +153,8 @@ for (const [route, page] of Object.entries(pages)) {
   await mkdir(routeDirectory, { recursive: true });
   await writeFile(join(routeDirectory, "index.html"), render(entry, route, page));
 }
+
+const sitemapRoutes = Object.keys(pages).map(route => `${origin}${basePath}/${route ? `${route}/` : ""}`);
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapRoutes.map((url, index) => `  <url><loc>${url}</loc><changefreq>${index === 0 ? "weekly" : "monthly"}</changefreq><priority>${index === 0 ? "1.0" : index < 4 ? "0.8" : "0.7"}</priority></url>`).join("\n")}\n</urlset>\n`;
+await writeFile(join(distRoot, "sitemap.xml"), sitemap);
+await writeFile(join(distRoot, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${origin}${basePath}/sitemap.xml\n`);
