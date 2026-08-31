@@ -6,6 +6,7 @@ import { chromium } from "playwright";
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const sourceImage = join(projectRoot, "assets-source", "og-background-v1.png");
 const publicRoot = join(projectRoot, "public");
+const specialistBanner = join(publicRoot, "og", "shaad-hair-patch-wig-banner.jpg");
 const iconRoot = join(publicRoot, "icons");
 const ogRoot = join(publicRoot, "og");
 await mkdir(iconRoot, { recursive: true });
@@ -43,6 +44,31 @@ await page.setContent(`<!doctype html><html><head>
   </div></body></html>`, { waitUntil: "networkidle" });
 await page.evaluate(() => document.fonts.ready);
 await page.locator("#card").screenshot({ path: join(ogRoot, "shaad-unisex-salon.jpg"), type: "jpeg", quality: 88 });
+
+const specialistBackground = (await readFile(specialistBanner)).toString("base64");
+await page.setViewportSize({ width: 1200, height: 630 });
+await page.setContent(`<!doctype html><html><head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@700&family=Rethink+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#171313}
+    #card{position:relative;width:1200px;height:630px;overflow:hidden;background:#171313;color:#f4ecdf}
+    #card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,13,10,.96) 0%,rgba(36,13,12,.88) 39%,rgba(23,19,19,.18) 68%,rgba(23,19,19,.03) 100%)}
+    .frame{position:absolute;inset:26px;border:1px solid rgba(244,236,223,.28)}
+    .copy{position:absolute;left:72px;top:78px;width:500px}.kicker{font:800 16px/1 'Rethink Sans',sans-serif;letter-spacing:.17em;color:#e4b9ae}
+    .accent{width:38px;height:5px;margin:27px 0 21px;border-radius:9px;background:#c52b31}
+    h1{margin:0;font:700 88px/.85 'Red Rose',serif;letter-spacing:-.065em}h2{margin:18px 0 0;font:800 39px/.98 'Rethink Sans',sans-serif;letter-spacing:-.045em}
+    p{margin:28px 0 0;font:700 17px/1.35 'Rethink Sans',sans-serif;letter-spacing:.07em;color:#ead8cf}
+    .location{position:absolute;left:72px;bottom:74px;font:700 16px/1.2 'Rethink Sans',sans-serif;letter-spacing:.1em}.location small{display:block;margin-top:8px;font:500 13px/1 'Rethink Sans',sans-serif;letter-spacing:.04em;color:#d9a49a}
+  </style></head><body><div id="card">
+    <img src="data:image/jpeg;base64,${specialistBackground}" alt=""><div class="shade"></div><div class="frame"></div>
+    <div class="copy"><div class="kicker">SHAAD UNISEX SALON</div><div class="accent"></div><h1>HAIR PATCH</h1><h2>&amp; WIG STUDIO</h2><p>NATURAL-LOOKING FITTING · EXPERT STYLING</p></div>
+    <div class="location">BTM LAYOUT · BENGALURU<small>Open daily · 10 AM–10 PM</small></div>
+  </div></body></html>`, { waitUntil: "networkidle" });
+await page.evaluate(() => document.fonts.ready);
+await page.locator("#card").screenshot({ path: join(ogRoot, "shaad-hair-patch-wig-banner-v2.jpg"), type: "jpeg", quality: 90 });
 
 const iconMarkup = (size, maskable = false) => `<!doctype html><html><head><style>
   *{box-sizing:border-box}html,body{margin:0;width:${size}px;height:${size}px;overflow:hidden;background:${maskable ? "#48120e" : "transparent"}}
