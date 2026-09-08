@@ -9,6 +9,8 @@ const isPreview = process.env.GITHUB_PAGES === "true";
 const origin = process.env.SITE_ORIGIN || process.env.URL || (isPreview ? "https://evanpaul90.github.io" : "https://shaadsalonwigstudio.com");
 const basePath = process.env.SITE_BASE_PATH || (isPreview ? "/shaad-unisex-salon-preview" : "");
 const ogImage = `${origin}${basePath}/og/shaad-hair-patch-wig-banner-v2.jpg`;
+const templateRoot = "https://evanpaul90.github.io/shaad-unisex-salon-preview";
+const publicRoot = `${origin}${basePath}`;
 
 const pages = {
   "": {
@@ -114,7 +116,9 @@ function structuredData(route, page, url) {
 
 function render(entry, route, page) {
   const url = `${origin}${basePath}/${route ? `${route}/` : ""}`;
-  let html = entry.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(page.title)}</title>`);
+  let html = entry
+    .replaceAll(`${templateRoot}/`, `${publicRoot}/`)
+    .replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(page.title)}</title>`);
   html = setMeta(html, "name", "description", page.description);
   const robots = isPreview ? "noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
   html = setMeta(html, "name", "robots", robots);
