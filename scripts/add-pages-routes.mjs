@@ -30,7 +30,7 @@ const pages = {
   "services/hair-cut-beard-styling": {
     title: "Haircut & Beard Styling in BTM | Shaad Unisex Salon",
     description: "Book precision haircuts, beard shaping and personalised styling for men and women at Shaad Unisex Salon in BTM Layout, Bengaluru.",
-    service: "Hair Cut, Beard and Styling",
+    service: "Hair Cut, Beard and Styling (package)",
   },
   "services/balayage-colour": {
     title: "Balayage & Hair Colour in BTM | Shaad Unisex Salon",
@@ -43,19 +43,19 @@ const pages = {
     service: "Manicure and Pedicure",
   },
   "services/hair-patch-service": {
-    title: "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
+    title: "Hair Patch for Men in Bengaluru | Shaad Unisex Salon",
     description: "Get natural-looking hair patch fitting, colour matching and styling at Shaad Unisex Salon in BTM Layout, Bengaluru.",
-    service: "Hair Patch Service",
+    service: "Hair Patch (Men)",
   },
   "services/wig-studio": {
-    title: "Wig Studio in Bengaluru | Shaad Unisex Salon",
+    title: "Women Wig in Bengaluru | Shaad Unisex Salon",
     description: "Find a custom wig studio in BTM Layout, Bengaluru for natural-looking wig selection, fitting and styling at Shaad.",
-    service: "Wig Studio",
+    service: "Women Wig",
   },
   "services/hair-patch-wig-service": {
-    title: "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
+    title: "Hair Patch for Men in Bengaluru | Shaad Unisex Salon",
     description: "Get natural-looking hair patch fitting, colour matching and styling at Shaad Unisex Salon in BTM Layout, Bengaluru.",
-    service: "Hair Patch Service",
+    service: "Hair Patch (Men)",
   },
   "services/keratin-botox-nano-plastia-treatment": {
     title: "Keratin, Botox & Nanoplastia in BTM | Shaad Salon",

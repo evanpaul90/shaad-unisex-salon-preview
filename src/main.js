@@ -12,9 +12,9 @@ const services = [
   {
     no: "01",
     slug: "hair-patch-service",
-    title: "Hair Patch Service",
-    category: "Hair Patch Studio",
-    price: "₹4000–₹6500",
+    title: "Hair Patch (Men)",
+    category: "Hair Patch",
+    price: "₹10,000–₹20,000",
     image: "hair-patch-fitting-shaad-v2.png",
     steps: ["Consultation", "Custom Fit", "Final Finish"],
     copy: "Natural-looking hair patch fitting, colour matching and styling tailored to your hairline, face shape and everyday routine."
@@ -22,9 +22,9 @@ const services = [
   {
     no: "02",
     slug: "wig-studio",
-    title: "Wig Studio",
-    category: "Wig Studio",
-    price: "₹4000–₹6500",
+    title: "Women Wig",
+    category: "Women Wig",
+    price: "₹15,000–₹30,000",
     image: "u8DhJUVVof2cDZ7Fwv8ApyeKM.png",
     steps: ["Consultation", "Custom Selection", "Fit & Style"],
     copy: "Custom wig selection, fitting and styling with natural movement, comfortable wear and a finish made for you."
@@ -32,9 +32,9 @@ const services = [
   {
     no: "03",
     slug: "hair-cut-beard-styling",
-    title: "Hair Cut | Beard | Styling",
+    title: "Hair Cut | Beard | Styling (package)",
     category: "Cut & Style",
-    price: "₹550–₹1000",
+    price: "₹350–₹1,000",
     image: "haircut-by-shaad-v2.png",
     steps: ["Consultation", "Cut & Style", "Final Touch"],
     copy: "Precision haircuts, beard shaping and personalised styling designed around your face shape, hair type and everyday routine."
@@ -44,7 +44,7 @@ const services = [
     slug: "balayage-colour",
     title: "Balayage & Colour",
     category: "Colour Service",
-    price: "₹2500–₹5000",
+    price: "₹2,500–₹10,000",
     image: "mlV8al09zPk66TU8RIxeoZo1frY.png",
     steps: ["Consultation", "Colour Apply", "Toning"],
     copy: "Hand-painted colour blended to your skin tone for a natural, dimensional, sun-kissed finish."
@@ -54,7 +54,7 @@ const services = [
     slug: "manicure-pedicure",
     title: "Manicure | Pedicure",
     category: "Nail & Foot Care",
-    price: "₹400–₹1500",
+    price: "₹450–₹2,000",
     image: "e4IJbesQHoQJaLQJihEPYSLBkL4.png",
     steps: ["Consultation", "Care Ritual", "Shine"],
     copy: "Professional manicure and pedicure care for healthy nails, soft skin and beautifully groomed hands and feet."
@@ -64,7 +64,7 @@ const services = [
     slug: "keratin-botox-nano-plastia-treatment",
     title: "Hair Treatment",
     category: "Smoothing Treatment",
-    price: "₹5000–₹10000",
+    price: "₹4,000–₹12,000",
     image: "8KbEeB46GCwtGk07eW7qODXnsl8.png",
     steps: ["Consultation", "Treatment", "Blow Dry"],
     copy: "Keratin, botox and nanoplastia treatments that repair damage, reduce frizz and restore healthy shine."
@@ -74,7 +74,7 @@ const services = [
     slug: "waxing",
     title: "Waxing",
     category: "Skin & Body Care",
-    price: "₹50–₹1000",
+    price: "₹100–₹3,500",
     image: "hqSdeyircBMGC2y1hYU92XXlnI.png",
     steps: ["Consultation", "Gentle Waxing", "Soothe"],
     copy: "Gentle, hygienic face and body waxing performed with premium wax and calming post-care."
@@ -84,7 +84,7 @@ const services = [
     slug: "bridal-makeup-services",
     title: "Bridal | Makeup Services",
     category: "Special Occasion",
-    price: "₹4000–₹5000",
+    price: "₹2,500–₹20,000",
     image: "QK5AKIktgXoTG04F4jbCisKUA.jpg",
     steps: ["Trial Session", "Day-of Makeup", "Shine All Day"],
     copy: "HD and airbrush bridal makeup, hairstyling and long-lasting wedding looks for every celebration."
@@ -93,7 +93,7 @@ const services = [
 
 const categoryImages = [
   ["Hair Patch", "hair-patch-fitting-shaad-v2.png"],
-  ["Wig Studio", "u8DhJUVVof2cDZ7Fwv8ApyeKM.png"],
+  ["Women Wig", "u8DhJUVVof2cDZ7Fwv8ApyeKM.png"],
   ["Balayage & Colour", "81ZKndk2HddfOlpVEwnxRwrc.png"],
   ["Hair Treatment", "Ixc0t5m0qcEUpWpV6WKOiOaVh2s.png"],
   ["Styling", "haircut-by-shaad-v2.png"],
@@ -249,7 +249,7 @@ const detailCopy = {
   "balayage-colour": ["Balayage & Hair Colour in Bengaluru", "Our colour specialists customise every formula to your complexion, base colour and desired maintenance level."],
   "manicure-pedicure": ["Professional Hand & Foot Care", "A hygienic, restorative ritual covering nail shaping, cuticle care, exfoliation, massage and optional polish."],
   "hair-patch-service": ["Natural Hair Patch Fitting", "Every patch is colour-matched, shaped and fitted for comfort, confidence and a natural finish."],
-  "wig-studio": ["A Wig Studio Built Around You", "Choose a natural-looking wig, then make it yours with careful fitting, shaping and styling."],
+  "wig-studio": ["A Women’s Wig Service Built Around You", "Choose a natural-looking wig, then make it yours with careful fitting, shaping and styling."],
   "keratin-botox-nano-plastia-treatment": ["Advanced Hair Repair", "Keratin, hair botox and nanoplastia are selected after a full hair analysis to smooth, strengthen and restore shine."],
   "waxing": ["Gentle, Hygienic Waxing", "Premium wax, careful preparation and calming aftercare deliver smooth skin with minimal irritation."],
   "bridal-makeup-services": ["Bridal Makeup in Bengaluru", "HD and airbrush makeup, bridal hairstyling and draping are composed around your features, outfit and celebration." ]
@@ -364,9 +364,9 @@ const routeTitles = {
   "/services/hair-cut-beard-styling": "Haircut & Beard Styling in BTM | Shaad Unisex Salon",
   "/services/balayage-colour": "Balayage & Hair Colour in BTM | Shaad Unisex Salon",
   "/services/manicure-pedicure": "Manicure & Pedicure in BTM | Shaad Unisex Salon",
-  "/services/hair-patch-service": "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
-  "/services/wig-studio": "Wig Studio in Bengaluru | Shaad Unisex Salon",
-  "/services/hair-patch-wig-service": "Hair Patch Service in Bengaluru | Shaad Unisex Salon",
+  "/services/hair-patch-service": "Hair Patch for Men in Bengaluru | Shaad Unisex Salon",
+  "/services/wig-studio": "Women Wig in Bengaluru | Shaad Unisex Salon",
+  "/services/hair-patch-wig-service": "Hair Patch for Men in Bengaluru | Shaad Unisex Salon",
   "/services/keratin-botox-nano-plastia-treatment": "Keratin, Botox & Nanoplastia in BTM | Shaad Salon",
   "/services/waxing": "Waxing Services in BTM Layout | Shaad Unisex Salon",
   "/services/bridal-makeup-services": "Bridal Makeup in BTM Layout | Shaad Unisex Salon",

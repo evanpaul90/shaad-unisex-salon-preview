@@ -6,6 +6,16 @@ const mapUrl = "https://share.google/ZmUFkZwmDAVp3thyx";
 const previewRoot = process.env.SHAAD_EXPECTED_ROOT || "https://evanpaul90.github.io/shaad-unisex-salon-preview";
 const previewOgImage = process.env.SHAAD_EXPECTED_OG || `${previewRoot}/og/shaad-hair-patch-wig-banner-v2.jpg`;
 const expectNoIndex = process.env.SHAAD_EXPECT_NOINDEX === "true";
+const expectedServicePricing = [
+  ["Hair Patch (Men)", "₹10,000–₹20,000"],
+  ["Women Wig", "₹15,000–₹30,000"],
+  ["Hair Cut | Beard | Styling (package)", "₹350–₹1,000"],
+  ["Balayage & Colour", "₹2,500–₹10,000"],
+  ["Manicure | Pedicure", "₹450–₹2,000"],
+  ["Hair Treatment", "₹4,000–₹12,000"],
+  ["Waxing", "₹100–₹3,500"],
+  ["Bridal | Makeup Services", "₹2,500–₹20,000"],
+];
 const allRoutes = [
   "/",
   "/about",
@@ -50,7 +60,7 @@ async function inspect(route, viewport) {
     await page.waitForTimeout(150);
 
     const expectedCanonical = `${previewRoot}${route === "/" ? "/" : `${route}/`}`;
-    const result = await page.evaluate(({ booking, mapUrl, expectedCanonical, previewOgImage, expectNoIndex, route }) => {
+    const result = await page.evaluate(({ booking, mapUrl, expectedCanonical, previewOgImage, expectNoIndex, route, expectedServicePricing }) => {
       const text = document.body.innerText;
       const bookingLinks = [...document.querySelectorAll("a")]
         .filter((anchor) => /^book\b/i.test(anchor.textContent.trim()))
@@ -65,6 +75,10 @@ async function inspect(route, viewport) {
       const robots = meta('meta[name="robots"]');
       const ogImage = meta('meta[property="og:image"]');
       const processTabs = [...document.querySelectorAll(".process-tab")];
+      const servicePricing = [...document.querySelectorAll(".service-card")].map((card) => [
+        card.querySelector(".service-card__head h3")?.textContent.trim(),
+        card.querySelector(".price b")?.textContent.trim(),
+      ]);
       const tabsOverlap = processTabs.some((tab, index) => processTabs.slice(index + 1).some((other) => {
         const a = tab.getBoundingClientRect();
         const b = other.getBoundingClientRect();
@@ -89,6 +103,8 @@ async function inspect(route, viewport) {
         hasPhone: /\+91 97402 20816/.test(text),
         heroSlides: document.querySelectorAll(".hero-slide").length,
         serviceCards: document.querySelectorAll(".service-card").length,
+        servicePricingCorrect: !["/", "/services"].includes(route)
+          || JSON.stringify(servicePricing) === JSON.stringify(expectedServicePricing),
         reviewCards: document.querySelectorAll(".orbit-card").length,
         processTabs: processTabs.length,
         tabsOverlap,
@@ -135,7 +151,7 @@ async function inspect(route, viewport) {
             && (!expectNoIndex || robots.includes("noindex")),
         },
       };
-    }, { booking, mapUrl, expectedCanonical, previewOgImage, expectNoIndex, route });
+    }, { booking, mapUrl, expectedCanonical, previewOgImage, expectNoIndex, route, expectedServicePricing });
 
     if (viewport.name === "mobile") {
       const menu = page.locator(".menu-button");
@@ -200,6 +216,7 @@ async function inspect(route, viewport) {
       && result.hasAddress
       && result.hasHours
       && result.hasPhone
+      && result.servicePricingCorrect
       && filteredErrors.length === 0
       && result.seo.pass
       && (viewport.name !== "mobile" || result.mobileMenuOpens)
