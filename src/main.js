@@ -113,7 +113,7 @@ const button = (label, href, kind = "primary") => `<a class="button button--${ki
 const eyebrow = (text) => `<p class="eyebrow">[ ${text} ]</p>`;
 
 function siteHeader() {
-  const links = [["Home", "/"], ["Services", "/services"], ["About", "/about"], ["Visit us", "/contact"]];
+  const links = [["Home", "/"], ["Services", "/services"], ["Visit us", "/contact"]];
   return `<header class="site-header" data-header>
     <a class="wordmark" href="${route("/")}" aria-label="Shaad Unisex Salon home">
       <span class="wordmark__mark">S</span><span class="wordmark__text"><b>SHAAD</b><small>UNISEX SALON</small></span>
@@ -222,22 +222,6 @@ function servicesPage() {
   return `${siteHeader()}<main>${pageHero({label:"WHAT WE OFFER",title:"HAIR PATCH & WIG STUDIO",copy:"Natural-looking hair patch fitting and custom wig services in BTM Layout, alongside the cuts, colour, treatments and beauty care Shaad is known for."})}<section class="service-page-list shell">${services.map(s => serviceCard(s)).join("")}</section></main>${siteFooter()}`;
 }
 
-const team = [
-  ["Colour Specialist", "Olivia Stone", "Colour-obsessed stylist with eight years of salon experience.", "OUuVQZQR2UUwv4ZyjVLhE75sxg8.png"],
-  ["Precision Cut Expert", "Jessica Hart", "Precision-focused stylist known for cuts that hold their shape.", "lMgG5LpyBymyEToxu3PVZAp88ho.jpeg"],
-  ["Treatment Specialist", "Aisha Patel", "Helping clients achieve healthy, frizz-free hair they love.", "1lNuScppplw58oUkbU839mhfgE.png"],
-  ["Bridal Specialist", "Leah Carter", "Calm, detail-led styling for every part of the wedding day.", "ht87wM346A34VBpGIxxbXmf7nk.png"],
-  ["Extensions & Blending", "Nina Torres", "Seamless length and volume with an undetectable finish.", "vBlIiwr5l1m6XAS6fYtXwkYKLfw.png"]
-];
-
-function aboutPage() {
-  return `${siteHeader()}<main>${pageHero({label:"WHO WE ARE",title:"ABOUT US",copy:"Shaad Unisex Salon was built for people who take their hair seriously and expect nothing less than exceptional every time."})}
-    <section class="about-portrait"><img src="${A("P2TRmwOb4TK13ZQlNoTOOeDwOfU.png")}" alt="Precision bob cut"></section>
-    <section class="journey shell"><div>${eyebrow("OUR JOURNEY")}<h2>BEAUTY BUILT<br>ON TRUST.</h2></div><p>Our work begins with listening. Every hair patch, wig, cut, colour, treatment and beauty service is tailored to the person in the chair—not copied from a trend. That focus has made Shaad a dependable salon home in Bengaluru.</p><div class="journey-stats"><span><b>7+</b>Years serving</span><span><b>3000+</b>Happy clients</span><span><b>8</b>Expert services</span><span><b>99%</b>Client satisfaction</span></div></section>
-    <section class="team shell">${eyebrow("THE STYLISTS")}<div class="section-heading"><h2>OUR TEAM</h2><p>Talent, training and a genuine passion for exceptional results.</p></div><div class="team-grid">${team.map(([role,name,copy,img],i)=>`<article><img src="${A(img)}" alt="${name}" loading="lazy"><span>${String(i+1).padStart(2,"0")} / 05 · ${role}</span><h3>${name}</h3><p>${copy}</p></article>`).join("")}</div></section>
-  </main>${siteFooter()}`;
-}
-
 function contactPage() {
   return `${siteHeader()}<main>${pageHero({label:"GET IN TOUCH",title:"CONTACT",copy:"From bookings to general enquiries, our friendly team is available every day across all of our channels.",primary:["Book appointment",BOOKING_URL],secondary:["Explore services","/services"]})}
     <section class="contact-grid shell"><img src="${A("HP6FFojOSOXx6e7xHUG8MpYxkw.png")}" alt="Elegant salon hairstyle"><div class="contact-panel"><h2>OPENING HOURS</h2><dl><div><dt>Monday–Sunday</dt><dd>10:00 AM–10:00 PM</dd></div></dl><h2>FIND US</h2><p><a href="${MAP_URL}" target="_blank" rel="noopener noreferrer">5th C Cross, No. 10, 16th Main Road<br>BTM Layout 2nd Stage<br>Bengaluru, Karnataka 560076</a></p><h2>CONTACT</h2><a href="tel:${PHONE_LINK}">${PHONE_DISPLAY}</a><a href="mailto:shaadunisexsalon1@gmail.com">shaadunisexsalon1@gmail.com</a><a href="${BOOKING_URL}">Book online →</a><h2>SOCIALS</h2><a href="https://www.instagram.com/shaad_unisex_salon_/" aria-label="Shaad Unisex Salon on Instagram">Instagram</a></div></section>
@@ -276,7 +260,6 @@ document.body.classList.toggle("home-route", path === "/");
 let html;
 if (path === "/") html = homePage();
 else if (path === "/services") html = servicesPage();
-else if (path === "/about") html = aboutPage();
 else if (path === "/contact") html = contactPage();
 else if (path.startsWith("/services/")) {
   const requestedSlug = path.slice("/services/".length);
@@ -358,7 +341,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click
 
 const routeTitles = {
   "/": "Shaad Unisex Salon | Hair Patch & Wig Studio in Bengaluru",
-  "/about": "About Shaad | Unisex Salon in BTM Layout, Bengaluru",
   "/services": "Hair Patch & Wig Studio Services | Shaad Bengaluru",
   "/contact": "Contact Shaad Unisex Salon | BTM Layout, Bengaluru",
   "/services/hair-cut-beard-styling": "Haircut & Beard Styling in BTM | Shaad Unisex Salon",
@@ -373,7 +355,6 @@ const routeTitles = {
 };
 const routeDescriptions = {
   "/": "Shaad is a specialist hair patch and wig studio in BTM Layout, Bengaluru, offering natural-looking fitting, styling and complete salon care.",
-  "/about": "Meet Shaad Unisex Salon in BTM Layout, Bengaluru: a focused hair patch and wig studio alongside personalised hair, beauty and bridal services.",
   "/services": "Explore specialist hair patch fitting and wig studio services in BTM Layout, followed by haircuts, colour, treatments and beauty care at Shaad.",
   "/contact": "Visit Shaad Unisex Salon at 16th Main Road, BTM 2nd Stage, Bengaluru. Open daily 10 AM–10 PM. Call +91 97402 20816 or book online.",
   "/services/hair-cut-beard-styling": "Book precision haircuts, beard shaping and personalised styling at Shaad Unisex Salon in BTM Layout, Bengaluru.",

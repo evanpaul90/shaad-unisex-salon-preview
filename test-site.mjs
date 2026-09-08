@@ -18,7 +18,6 @@ const expectedServicePricing = [
 ];
 const allRoutes = [
   "/",
-  "/about",
   "/services",
   "/contact",
   "/services/hair-cut-beard-styling",
@@ -75,6 +74,8 @@ async function inspect(route, viewport) {
       const robots = meta('meta[name="robots"]');
       const ogImage = meta('meta[property="og:image"]');
       const processTabs = [...document.querySelectorAll(".process-tab")];
+      const hasAboutNavigation = [...document.querySelectorAll("header nav a")]
+        .some((anchor) => anchor.textContent.trim() === "About" || anchor.pathname.endsWith("/about"));
       const servicePricing = [...document.querySelectorAll(".service-card")].map((card) => [
         card.querySelector(".service-card__head h3")?.textContent.trim(),
         card.querySelector(".price b")?.textContent.trim(),
@@ -107,6 +108,7 @@ async function inspect(route, viewport) {
           || JSON.stringify(servicePricing) === JSON.stringify(expectedServicePricing),
         reviewCards: document.querySelectorAll(".orbit-card").length,
         processTabs: processTabs.length,
+        hasAboutNavigation,
         tabsOverlap,
         videoCount: document.querySelectorAll("video").length,
         mapCorrect: document.querySelector(".footer-map")?.href === mapUrl,
@@ -216,6 +218,7 @@ async function inspect(route, viewport) {
       && result.hasAddress
       && result.hasHours
       && result.hasPhone
+      && !result.hasAboutNavigation
       && result.servicePricingCorrect
       && filteredErrors.length === 0
       && result.seo.pass
