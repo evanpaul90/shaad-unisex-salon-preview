@@ -57,4 +57,6 @@ the final domain is connected.
 All imagery and video used by the live design are stored under `public/assets/`. The old Framer snapshot
 can be refreshed manually with `npm run sync:reference`; it must not replace the owned build.
 
-The GitHub Pages deployment is a temporary client preview, not the salon's final production hosting.
+Production domain: `https://shaadsalonwigstudio.com/`
+
+The GitHub Pages deployment remains a temporary client preview; Netlify serves the production domain.

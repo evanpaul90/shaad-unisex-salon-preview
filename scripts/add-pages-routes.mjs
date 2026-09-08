@@ -6,7 +6,7 @@ const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const distRoot = join(projectRoot, "dist");
 const entryPath = join(distRoot, "index.html");
 const isPreview = process.env.GITHUB_PAGES === "true";
-const origin = process.env.SITE_ORIGIN || process.env.URL || (isPreview ? "https://evanpaul90.github.io" : "https://shaad-unisex-salon.netlify.app");
+const origin = process.env.SITE_ORIGIN || process.env.URL || (isPreview ? "https://evanpaul90.github.io" : "https://shaadsalonwigstudio.com");
 const basePath = process.env.SITE_BASE_PATH || (isPreview ? "/shaad-unisex-salon-preview" : "");
 const ogImage = `${origin}${basePath}/og/shaad-hair-patch-wig-banner-v2.jpg`;
 
