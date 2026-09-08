@@ -5,3 +5,7 @@ _shots/
 playwright-report/
 test-results/
 .DS_Store
+.env
+.env.*
+!.env.example
+!.env.spaceship.example
